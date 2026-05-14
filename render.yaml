@@ -15,8 +15,9 @@ services:
         value: 3.10.12
 
   # Frontend Service (Static Site)
-  - type: static
+  - type: web
     name: neuroscan-frontend
+    env: static
     region: ohio
     plan: free
     buildCommand: npm install && npm run build
