@@ -42,7 +42,7 @@ tokenizer = None
 
 def init_models():
     global model_no_text, model_with_text, clip_model, tokenizer
-    base_dir = "/home/resetadmin/Downloads/6th sem/DL/project/results"
+    base_dir = os.path.join(os.path.dirname(__file__), "weights")
     
     # Load model without text
     if model_no_text is None:
@@ -203,4 +203,5 @@ async def predict(
         raise HTTPException(status_code=400, detail=str(e))
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False if os.environ.get("RENDER") else True)
