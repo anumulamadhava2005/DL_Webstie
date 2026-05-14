@@ -7,7 +7,7 @@ services:
     plan: starter # Recommend starter for DL models
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
-    rootDirectory: backend
+    rootDir: backend
     envVars:
       - key: RENDER
         value: "true"
@@ -15,14 +15,13 @@ services:
         value: 3.10.12
 
   # Frontend Service (Static Site)
-  - type: web
+  - type: static
     name: neuroscan-frontend
-    env: static
     region: ohio
     plan: free
     buildCommand: npm install && npm run build
-    staticPublishDir: dist
-    rootDirectory: frontend
+    staticPublishPath: dist
+    rootDir: frontend
     envVars:
       - key: VITE_API_URL
         fromService:
