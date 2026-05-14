@@ -18,7 +18,6 @@ services:
   - type: web
     name: neuroscan-frontend
     env: static
-    region: ohio
     plan: free
     buildCommand: npm install && npm run build
     staticPublishPath: dist
